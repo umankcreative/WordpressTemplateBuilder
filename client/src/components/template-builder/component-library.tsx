@@ -1,5 +1,10 @@
 import { useDrag } from "react-dnd";
-import { Navigation, Star, Images, HelpCircle, Mail, Minus } from "lucide-react";
+import { 
+  Navigation, Star, Images, HelpCircle, Mail, Minus, 
+  Award, MousePointer, Target, Users, DollarSign, Shield,
+  Play, Camera, Building2, FileText, Type, Heading,
+  UserCheck, MessageSquare, BarChart3, Info
+} from "lucide-react";
 
 interface ComponentLibraryProps {
   searchTerm: string;
@@ -50,6 +55,7 @@ function ComponentItem({ type, name, description, icon, onAddComponent }: Compon
 
 export default function ComponentLibrary({ searchTerm, onAddComponent }: ComponentLibraryProps) {
   const components = [
+    // Layout Components
     {
       type: "navbar",
       name: "Navigation Bar",
@@ -58,17 +64,56 @@ export default function ComponentLibrary({ searchTerm, onAddComponent }: Compone
       category: "Layout",
     },
     {
+      type: "footer",
+      name: "Footer",
+      description: "Bottom page section",
+      icon: <Minus className="h-4 w-4 text-slate-600" />,
+      category: "Layout",
+    },
+    
+    // Hero & Headers
+    {
       type: "hero",
       name: "Hero Section",
       description: "Main banner area",
       icon: <Star className="h-4 w-4 text-slate-600" />,
+      category: "Hero & Headers",
+    },
+    {
+      type: "headline",
+      name: "Headline",
+      description: "Large attention-grabbing title",
+      icon: <Heading className="h-4 w-4 text-slate-600" />,
+      category: "Hero & Headers",
+    },
+    {
+      type: "subheading",
+      name: "Subheading",
+      description: "Supporting text under headlines",
+      icon: <Type className="h-4 w-4 text-slate-600" />,
+      category: "Hero & Headers",
+    },
+    
+    // Content Components
+    {
+      type: "text",
+      name: "Text Block",
+      description: "Rich text content",
+      icon: <FileText className="h-4 w-4 text-slate-600" />,
       category: "Content",
     },
     {
-      type: "gallery",
-      name: "Gallery",
-      description: "Image showcase grid",
-      icon: <Images className="h-4 w-4 text-slate-600" />,
+      type: "features",
+      name: "Features",
+      description: "Product/service features grid",
+      icon: <Target className="h-4 w-4 text-slate-600" />,
+      category: "Content",
+    },
+    {
+      type: "about",
+      name: "About Section",
+      description: "Company information",
+      icon: <Info className="h-4 w-4 text-slate-600" />,
       category: "Content",
     },
     {
@@ -78,19 +123,104 @@ export default function ComponentLibrary({ searchTerm, onAddComponent }: Compone
       icon: <HelpCircle className="h-4 w-4 text-slate-600" />,
       category: "Content",
     },
+    
+    // Visual Components
+    {
+      type: "gallery",
+      name: "Gallery",
+      description: "Image showcase grid",
+      icon: <Images className="h-4 w-4 text-slate-600" />,
+      category: "Visual",
+    },
+    {
+      type: "video",
+      name: "Video Player",
+      description: "Embedded video content",
+      icon: <Play className="h-4 w-4 text-slate-600" />,
+      category: "Visual",
+    },
+    {
+      type: "images",
+      name: "Image Block",
+      description: "Single or multiple images",
+      icon: <Camera className="h-4 w-4 text-slate-600" />,
+      category: "Visual",
+    },
+    
+    // Social Proof
+    {
+      type: "testimonials",
+      name: "Testimonials",
+      description: "Customer reviews and quotes",
+      icon: <MessageSquare className="h-4 w-4 text-slate-600" />,
+      category: "Social Proof",
+    },
+    {
+      type: "social-proof",
+      name: "Social Proof",
+      description: "Customer logos and metrics",
+      icon: <Award className="h-4 w-4 text-slate-600" />,
+      category: "Social Proof",
+    },
+    {
+      type: "client-logos",
+      name: "Client Logos",
+      description: "Company logos showcase",
+      icon: <Building2 className="h-4 w-4 text-slate-600" />,
+      category: "Social Proof",
+    },
+    {
+      type: "stats",
+      name: "Statistics",
+      description: "Key numbers and metrics",
+      icon: <BarChart3 className="h-4 w-4 text-slate-600" />,
+      category: "Social Proof",
+    },
+    
+    // Business Components
+    {
+      type: "pricing",
+      name: "Pricing Tables",
+      description: "Service pricing plans",
+      icon: <DollarSign className="h-4 w-4 text-slate-600" />,
+      category: "Business",
+    },
+    {
+      type: "cta",
+      name: "Call to Action",
+      description: "Action buttons and forms",
+      icon: <MousePointer className="h-4 w-4 text-slate-600" />,
+      category: "Business",
+    },
     {
       type: "contact",
       name: "Contact Form",
-      description: "Contact information",
+      description: "Contact information and forms",
       icon: <Mail className="h-4 w-4 text-slate-600" />,
-      category: "Content",
+      category: "Business",
     },
     {
-      type: "footer",
-      name: "Footer",
-      description: "Bottom page section",
-      icon: <Minus className="h-4 w-4 text-slate-600" />,
-      category: "Layout",
+      type: "value-proposition",
+      name: "Value Proposition",
+      description: "Key benefits highlight",
+      icon: <Target className="h-4 w-4 text-slate-600" />,
+      category: "Business",
+    },
+    
+    // Trust & Team
+    {
+      type: "trust-signals",
+      name: "Trust Signals",
+      description: "Security badges and certifications",
+      icon: <Shield className="h-4 w-4 text-slate-600" />,
+      category: "Trust & Team",
+    },
+    {
+      type: "team",
+      name: "Team Section",
+      description: "Team member profiles",
+      icon: <Users className="h-4 w-4 text-slate-600" />,
+      category: "Trust & Team",
     },
   ];
 

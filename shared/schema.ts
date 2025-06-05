@@ -27,7 +27,12 @@ export const pages = pgTable("pages", {
 // Component schema for JSON storage
 export const componentSchema = z.object({
   id: z.string(),
-  type: z.enum(["navbar", "hero", "gallery", "faq", "contact", "footer", "header"]),
+  type: z.enum([
+    "navbar", "hero", "gallery", "faq", "contact", "footer", "header",
+    "social-proof", "cta", "value-proposition", "client-logos", "pricing",
+    "trust-signals", "video", "images", "logos", "features", "text",
+    "headline", "subheading", "team", "testimonials", "stats", "about"
+  ]),
   properties: z.record(z.any()),
   children: z.array(z.any()).optional(),
   position: z.object({
