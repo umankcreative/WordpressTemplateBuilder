@@ -41,8 +41,12 @@ export class MemStorage implements IStorage {
   async createTemplate(insertTemplate: InsertTemplate): Promise<Template> {
     const id = this.currentTemplateId++;
     const template: Template = {
-      ...insertTemplate,
       id,
+      name: insertTemplate.name,
+      description: insertTemplate.description || null,
+      author: insertTemplate.author || null,
+      version: insertTemplate.version || "1.0.0",
+      pages: insertTemplate.pages || [],
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -67,11 +71,11 @@ export class MemStorage implements IStorage {
     const deleted = this.templates.delete(id);
     if (deleted) {
       // Also delete associated pages
-      for (const [pageId, page] of this.pages.entries()) {
+      Array.from(this.pages.entries()).forEach(([pageId, page]) => {
         if (page.templateId === id) {
           this.pages.delete(pageId);
         }
-      }
+      });
     }
     return deleted;
   }
@@ -88,8 +92,12 @@ export class MemStorage implements IStorage {
   async createPage(insertPage: InsertPage): Promise<Page> {
     const id = this.currentPageId++;
     const page: Page = {
-      ...insertPage,
       id,
+      name: insertPage.name,
+      slug: insertPage.slug,
+      templateId: insertPage.templateId || null,
+      components: insertPage.components || [],
+      isHomePage: insertPage.isHomePage || false,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
