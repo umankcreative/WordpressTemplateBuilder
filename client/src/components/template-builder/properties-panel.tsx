@@ -12,12 +12,14 @@ interface PropertiesPanelProps {
   selectedComponent: Component | null;
   onUpdateComponent: (id: string, properties: Record<string, any>) => void;
   onDeleteComponent: (id: string) => void;
+  onCopyComponent: (id: string) => void;
 }
 
 export default function PropertiesPanel({
   selectedComponent,
   onUpdateComponent,
   onDeleteComponent,
+  onCopyComponent,
 }: PropertiesPanelProps) {
   if (!selectedComponent) {
     return (
@@ -276,6 +278,365 @@ export default function PropertiesPanel({
           </div>
         );
 
+      case "social-proof":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="social-proof-subtitle">Subtitle</Label>
+              <Input
+                id="social-proof-subtitle"
+                value={properties.subtitle || "Trusted by thousands of companies worldwide"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "cta":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="cta-title">Title</Label>
+              <Input
+                id="cta-title"
+                value={properties.title || "Ready to Get Started?"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="cta-subtitle">Subtitle</Label>
+              <Input
+                id="cta-subtitle"
+                value={properties.subtitle || "Join thousands of satisfied customers today"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="cta-primary-button">Primary Button Text</Label>
+              <Input
+                id="cta-primary-button"
+                value={properties.primaryButton || "Get Started Free"}
+                onChange={(e) => handlePropertyChange("primaryButton", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="cta-secondary-button">Secondary Button Text</Label>
+              <Input
+                id="cta-secondary-button"
+                value={properties.secondaryButton || "Learn More"}
+                onChange={(e) => handlePropertyChange("secondaryButton", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="cta-bg">Background Color</Label>
+              <Input
+                id="cta-bg"
+                type="color"
+                value={properties.backgroundColor || "#2563eb"}
+                onChange={(e) => handlePropertyChange("backgroundColor", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="cta-text-color">Text Color</Label>
+              <Input
+                id="cta-text-color"
+                type="color"
+                value={properties.textColor || "#ffffff"}
+                onChange={(e) => handlePropertyChange("textColor", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "value-proposition":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="value-title">Title</Label>
+              <Input
+                id="value-title"
+                value={properties.title || "Why Choose Us?"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="value-subtitle">Subtitle</Label>
+              <Input
+                id="value-subtitle"
+                value={properties.subtitle || "Discover the benefits that set us apart"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "client-logos":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="logos-title">Title</Label>
+              <Input
+                id="logos-title"
+                value={properties.title || "Trusted by leading companies"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "pricing":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="pricing-title">Title</Label>
+              <Input
+                id="pricing-title"
+                value={properties.title || "Simple, Transparent Pricing"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="pricing-subtitle">Subtitle</Label>
+              <Input
+                id="pricing-subtitle"
+                value={properties.subtitle || "Choose the plan that's right for you"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "video":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="video-title">Title</Label>
+              <Input
+                id="video-title"
+                value={properties.title || "Watch Our Demo"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="video-subtitle">Subtitle</Label>
+              <Input
+                id="video-subtitle"
+                value={properties.subtitle || "See how our solution works in action"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "images":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="images-title">Title (Optional)</Label>
+              <Input
+                id="images-title"
+                value={properties.title || ""}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+                placeholder="Leave empty for no title"
+              />
+            </div>
+            <div>
+              <Label htmlFor="images-count">Number of Images</Label>
+              <Input
+                id="images-count"
+                type="number"
+                min="1"
+                max="12"
+                value={properties.imageCount || "3"}
+                onChange={(e) => handlePropertyChange("imageCount", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "features":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="features-title">Title</Label>
+              <Input
+                id="features-title"
+                value={properties.title || "Powerful Features"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="features-subtitle">Subtitle</Label>
+              <Input
+                id="features-subtitle"
+                value={properties.subtitle || "Everything you need to succeed"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "text":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="text-title">Title</Label>
+              <Input
+                id="text-title"
+                value={properties.title || "Your Content Title"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="text-content">Content</Label>
+              <Textarea
+                id="text-content"
+                value={properties.content || "Your content goes here..."}
+                onChange={(e) => handlePropertyChange("content", e.target.value)}
+                rows={4}
+              />
+            </div>
+          </div>
+        );
+
+      case "headline":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="headline-text">Headline Text</Label>
+              <Input
+                id="headline-text"
+                value={properties.text || "Your Amazing Headline"}
+                onChange={(e) => handlePropertyChange("text", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="headline-font-size">Font Size (px)</Label>
+              <Input
+                id="headline-font-size"
+                type="number"
+                min="20"
+                max="80"
+                value={properties.fontSize || 48}
+                onChange={(e) => handlePropertyChange("fontSize", parseInt(e.target.value))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="headline-color">Text Color</Label>
+              <Input
+                id="headline-color"
+                type="color"
+                value={properties.textColor || "#1f2937"}
+                onChange={(e) => handlePropertyChange("textColor", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "subheading":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="subheading-text">Subheading Text</Label>
+              <Input
+                id="subheading-text"
+                value={properties.text || "Supporting text that provides additional context"}
+                onChange={(e) => handlePropertyChange("text", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="subheading-font-size">Font Size (px)</Label>
+              <Input
+                id="subheading-font-size"
+                type="number"
+                min="14"
+                max="32"
+                value={properties.fontSize || 20}
+                onChange={(e) => handlePropertyChange("fontSize", parseInt(e.target.value))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="subheading-color">Text Color</Label>
+              <Input
+                id="subheading-color"
+                type="color"
+                value={properties.textColor || "#6b7280"}
+                onChange={(e) => handlePropertyChange("textColor", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "team":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="team-title">Title</Label>
+              <Input
+                id="team-title"
+                value={properties.title || "Meet Our Team"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="team-subtitle">Subtitle</Label>
+              <Input
+                id="team-subtitle"
+                value={properties.subtitle || "The talented people behind our success"}
+                onChange={(e) => handlePropertyChange("subtitle", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "testimonials":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="testimonials-title">Title</Label>
+              <Input
+                id="testimonials-title"
+                value={properties.title || "What Our Customers Say"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      case "about":
+        return (
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="about-title">Title</Label>
+              <Input
+                id="about-title"
+                value={properties.title || "About Our Company"}
+                onChange={(e) => handlePropertyChange("title", e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="about-description">Description</Label>
+              <Textarea
+                id="about-description"
+                value={properties.description || "We are a forward-thinking company..."}
+                onChange={(e) => handlePropertyChange("description", e.target.value)}
+                rows={4}
+              />
+            </div>
+          </div>
+        );
+
+      case "trust-signals":
+      case "stats":
+        return (
+          <div className="space-y-4">
+            <div className="text-center text-slate-500">
+              <p>This component uses predefined content.</p>
+              <p>Adjust spacing settings below.</p>
+            </div>
+          </div>
+        );
+
       default:
         return <p className="text-slate-500">No properties available for this component.</p>;
     }
@@ -310,6 +671,35 @@ export default function PropertiesPanel({
                 disabled
                 className="bg-slate-50"
               />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Actions */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm">Actions</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => onCopyComponent(selectedComponent.id)}
+                className="flex-1"
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                Copy
+              </Button>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => onDeleteComponent(selectedComponent.id)}
+                className="flex-1"
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete
+              </Button>
             </div>
           </CardContent>
         </Card>

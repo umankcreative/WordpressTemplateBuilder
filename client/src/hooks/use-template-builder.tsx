@@ -38,6 +38,17 @@ export function useTemplateBuilder() {
     setSelectedComponent(id);
   }, []);
 
+  const copyComponent = useCallback((id: string) => {
+    const componentToCopy = components.find((component) => component.id === id);
+    if (componentToCopy) {
+      const newComponent = {
+        ...componentToCopy,
+        id: `${componentToCopy.type}_${Date.now()}`,
+      };
+      setComponents((prev) => [...prev, newComponent]);
+    }
+  }, [components]);
+
   const clearSelection = useCallback(() => {
     setSelectedComponent(null);
   }, []);
@@ -57,6 +68,7 @@ export function useTemplateBuilder() {
     addComponent,
     updateComponent,
     deleteComponent,
+    copyComponent,
     selectComponent,
     clearSelection,
   };

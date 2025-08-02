@@ -6,6 +6,7 @@ import Canvas from "@/components/template-builder/canvas";
 import PropertiesPanel from "@/components/template-builder/properties-panel";
 import CodeEditor from "@/components/template-builder/code-editor";
 import ExportModal from "@/components/template-builder/export-modal";
+import PreviewModal from "@/components/template-builder/preview-modal";
 import { Button } from "@/components/ui/button";
 import { useTemplateBuilder } from "@/hooks/use-template-builder";
 import { Eye, Code, Download, Monitor, Tablet, Smartphone } from "lucide-react";
@@ -21,11 +22,13 @@ export default function TemplateBuilder() {
     addComponent,
     updateComponent,
     deleteComponent,
+    copyComponent,
     selectComponent,
     clearSelection,
   } = useTemplateBuilder();
 
   const [showExportModal, setShowExportModal] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
   const getBreakpointIcon = (breakpoint: string) => {
     switch (breakpoint) {
@@ -119,7 +122,7 @@ export default function TemplateBuilder() {
             </div>
 
             <div className="flex items-center space-x-3">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => setShowPreview(true)}>
                 <Eye className="h-4 w-4 mr-2" />
                 Preview
               </Button>
@@ -154,6 +157,7 @@ export default function TemplateBuilder() {
                 selectedComponent={selectedComponent}
                 onUpdateComponent={updateComponent}
                 onDeleteComponent={deleteComponent}
+                onCopyComponent={copyComponent}
               />
             )}
           </div>
@@ -163,6 +167,13 @@ export default function TemplateBuilder() {
         <ExportModal
           isOpen={showExportModal}
           onClose={() => setShowExportModal(false)}
+          components={components}
+        />
+
+        {/* Preview Modal */}
+        <PreviewModal
+          isOpen={showPreview}
+          onClose={() => setShowPreview(false)}
           components={components}
         />
       </div>
